@@ -1,7 +1,7 @@
 ../.idea
 .DS_Store
-.log
 .gitkeep
 *.iml
+*.log
 out
 gen
