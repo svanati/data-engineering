@@ -1,0 +1,7 @@
+../.idea
+.DS_Store
+.log
+.gitkeep
+*.iml
+out
+gen
