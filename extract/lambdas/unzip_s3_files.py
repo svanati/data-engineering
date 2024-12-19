@@ -15,12 +15,18 @@ def lambda_handler(event):
 
     Parameters:
     event (dict): Event data passed by AWS Lambda, containing S3 bucket and object key information.
-    context (object): AWS Lambda context object.
 
     Returns:
     dict: A dictionary containing the status code, and a success message.
     """
     try:
+        # Check if the event contains records
+        if 'Records' not in event or not event['Records']:
+            return {
+                    'statusCode': 400,
+                    'body':       'Event does not contain any records.'
+            }
+
         # Extract bucket name and key from the event
         bucket_name = event['Records'][0]['s3']['bucket']['name']
         object_key = event['Records'][0]['s3']['object']['key']
@@ -40,7 +46,7 @@ def lambda_handler(event):
                     file_content = file.read()
 
                     # Upload each file to the same S3 bucket
-                s3_client.put_object(Bucket=bucket_name, Key=file_name, Body=file_content)
+                    s3_client.put_object(Bucket=bucket_name, Key=file_name, Body=file_content)
 
         return {
                 'statusCode': 200,
