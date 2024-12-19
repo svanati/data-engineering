@@ -107,3 +107,72 @@ def test_lambda_handler_handles_invalid_zip(mock_boto_client):
 
     assert response['statusCode'] == 400
     assert 'Invalid zip file' in response['body']
+
+
+@patch('boto3.client')
+def test_lambda_handler_handles_malformed_event(mock_boto_client):
+    r"""
+    Test the lambda_handler function handles a malformed event structure.
+
+    Args:
+        mock_boto_client (MagicMock): Mocked boto3 client.
+    """
+    event = {}  # Malformed event without 'Records'
+
+    response = lambda_handler(event)
+
+    assert response['statusCode'] == 400
+    assert 'Event does not contain any records.' in response['body']
+
+
+@patch('boto3.client')
+def test_lambda_handler_handles_missing_bucket_or_key(mock_boto_client):
+    r"""
+    Test the lambda_handler function handles missing S3 bucket or key in the event.
+
+    Args:
+        mock_boto_client (MagicMock): Mocked boto3 client.
+    """
+    event = {
+            "Records": [
+                    {
+                            "s3": {
+                                    "bucket": {"name": "test-bucket"},
+                                    # "object": {"key": "test.zip"}  # Missing key
+                            }
+                    }
+            ]
+    }
+
+    response = lambda_handler(event)
+
+    assert response['statusCode'] == 400
+    assert 'Missing key in event data' in response['body']
+
+
+@patch('boto3.client')
+def test_lambda_handler_handles_unexpected_s3_response(mock_boto_client):
+    r"""
+    Test the lambda_handler function handles unexpected S3 response.
+
+    Args:
+        mock_boto_client (MagicMock): Mocked boto3 client.
+    """
+    mock_s3 = mock_boto_client.return_value
+    mock_s3.get_object.return_value = {}  # Missing 'Body' in response
+
+    event = {
+            "Records": [
+                    {
+                            "s3": {
+                                    "bucket": {"name": "test-bucket"},
+                                    "object": {"key": "test.zip"}
+                            }
+                    }
+            ]
+    }
+
+    response = lambda_handler(event)
+
+    assert response['statusCode'] == 500
+    assert 'An unexpected error occurred' in response['body']

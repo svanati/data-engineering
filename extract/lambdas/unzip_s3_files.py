@@ -24,7 +24,7 @@ def lambda_handler(event):
         if 'Records' not in event or not event['Records']:
             return {
                     'statusCode': 400,
-                    'body':       'Event does not contain any records.'
+                    'body': 'Event does not contain any records.'
             }
 
         # Extract bucket name and key from the event
@@ -36,6 +36,8 @@ def lambda_handler(event):
 
         # Get the zip file from S3
         response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
+        if 'Body' not in response:
+            raise Exception('Missing Body in S3 response')
         zip_content = response['Body'].read()
 
         # Unzip the file
