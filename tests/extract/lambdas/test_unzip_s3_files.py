@@ -10,7 +10,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 import io
 import zipfile
 
-import pytest
 from mock import MagicMock, patch
 from extract.lambdas.unzip_s3_files import lambda_handler
 
