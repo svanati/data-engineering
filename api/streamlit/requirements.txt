@@ -1,3 +1,11 @@
 # requirements.txt
+# This file lists the dependencies required to run the Streamlit application.
+# It is used by pip to install the necessary packages.
+
+# Snowflake Snowpark for Python
+# This package allows you to use Snowflake's Snowpark API to build data pipelines and machine learning workflows.
 snowflake-snowpark-python
+
+# Streamlit
+# This package is used to create interactive web applications for data science and machine learning projects.
 streamlit
