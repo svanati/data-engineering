@@ -1,4 +1,5 @@
 # Import python packages
+import requests
 import streamlit as st
 
 # Write directly to the app
@@ -13,3 +14,6 @@ name_on_order = st.text_input("Name on Smoothie:")
 
 if name_on_order:
     st.write("The name on your Smoothie will be:", name_on_order)
+
+smoothiefoot_response = requests.get("https://my.smoothiefoot.com/api/fruit/watermelon")
+st.text(smoothiefoot_response)
