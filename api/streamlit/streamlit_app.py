@@ -15,6 +15,12 @@ name_on_order = st.text_input("Name on Smoothie:")
 if name_on_order:
     st.write("The name on your Smoothie will be:", name_on_order)
 
+ingredients_list = st.multiselect(
+        "Choose up to 5 ingredients:",
+        my_dataframe,
+        max_selections=5
+)
+
 if ingredients_list:
         ingredients_list = ''
 
