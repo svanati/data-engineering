@@ -1,6 +1,8 @@
 # Requirements file for the Streamlit application
 # This file lists the Python packages required to run the app
 
+requests
+
 # Snowflake Snowpark Python library for connecting to Snowflake and performing data operations
 snowflake-snowpark-python
 
