@@ -1,5 +1,6 @@
 ../.idea
 .DS_Store
+.devcontainer
 .gitkeep
 .vscode
 *.iml
