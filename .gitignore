@@ -1,10 +1,49 @@
+# Ignore parent directory's IntelliJ IDEA project files
 ../.idea
+
+# Ignore macOS Finder metadata files
 .DS_Store
+
+# Ignore Dev Container configuration files and folders
 .devcontainer
+
+# Ignore placeholder files used to track empty directories
 .gitkeep
+
+# Ignore Visual Studio Code workspace settings
 .vscode
+
+# Ignore IntelliJ IDEA module files
 *.iml
+
+# Ignore log files
 *.log
+
+# Ignore specific Dev Container configuration file
 devcontainer.json
+
+# Ignore generated files and directories
 gen
 out
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore environment variable files
+.env
+.env.local
+.env.*.local
+
+# Ignore build output directories
+dist/
+build/
+
+# Ignore macOS system files (duplicate entry for safety)
+*.DS_Store
+
+# Ignore IntelliJ IDEA project files and settings
+.idea/
+
+# Ignore temporary files
+*.tmp
+*.swp
