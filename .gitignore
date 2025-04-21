@@ -1,0 +1,28 @@
+# Ignore common files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Terraform state
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# CDK output
+cdk.out/
+
+# Secrets / Sensitive data (add specific files as needed)
+*.pem
+*.key
+.env
+credentials*
+
+# IDE files
+.idea/
+.vscode/
